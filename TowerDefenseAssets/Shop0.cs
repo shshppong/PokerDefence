@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+public class Shop0 : MonoBehaviour
 {
-    BuildManager buildManager;
+    BuildManager0 buildManager;
 
     void Start()
     {

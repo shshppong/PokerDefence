@@ -17,10 +17,23 @@ public class CameraController : MonoBehaviour
     private float minY = 10f;
     [SerializeField]
     private float maxY = 80f;
+
+    public float fovStart = 60f;
+    public float fovEnd = 30f;
+    public float transitionTime = 3f;
+
+    private float _currentFov;
+    private float _lerpTime;
+    private Camera _camera;
+
+    void Start() {
+        _camera = this.GetComponent<Camera>();
+    }
     
     void Update()
     {
         InputKeyCameraMove();
+        // ChangeFOV();
     }
 
     void InputKeyCameraMove()
@@ -34,11 +47,37 @@ public class CameraController : MonoBehaviour
         
         Camera.main.transform.position = pos;
     }
+
+    void ChangeFOV()
+    {
+        if(Mathf.Abs(_currentFov - fovEnd) > float.Epsilon)
+        {
+            _lerpTime += Time.deltaTime;
+            float t = _lerpTime / transitionTime;
+
+            t = Mathf.SmoothStep(0, 1, t);
+            _currentFov = Mathf.Lerp(fovStart, fovEnd, t);
+        }
+        else if(Mathf.Abs(_currentFov - fovEnd) < float.Epsilon)
+        {
+            _lerpTime = 0;
+            float tmp = fovStart;
+            fovStart = fovEnd;
+            fovEnd = tmp;
+        }
+
+        _camera.fieldOfView = _currentFov;
+    }
+
+    // private float SmootherStep(float t)
+    // {
+    //     return t * t * t * (t * (6f * t - 15f) + 10f);
+    // }
     
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        // Gizmos.DrawLine(posA.position, );
+        Gizmos.DrawLine(posA.position, posB.position);
     }
 
 }
