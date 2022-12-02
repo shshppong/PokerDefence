@@ -14,6 +14,12 @@ namespace PokerDefence
         [SerializeField]
         private int _wayPointIndex;
 
+        void OnDisable()
+        {
+            ObjectPooler.ReturnToPool(gameObject);    // 한 객체에 한번만 
+            CancelInvoke();    // Monobehaviour에 Invoke가 있다면 
+        }
+
         void Start()
         {
             _target = Waypoints.Points[0];
