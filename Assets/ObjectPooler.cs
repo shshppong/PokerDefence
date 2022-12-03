@@ -24,7 +24,30 @@ public class ObjectPoolerEditor : Editor
 public class ObjectPooler : MonoBehaviour
 {
 	static ObjectPooler inst;
-	void Awake() => inst = this;
+	void Awake()
+	{
+		inst = this;
+
+		spawnObjects = new List<GameObject>();
+		poolDictionary = new Dictionary<string, Queue<GameObject>>();
+
+		// 미리 생성
+		foreach (Pool pool in pools)
+		{
+			poolDictionary.Add(pool.tag, new Queue<GameObject>());
+			for (int i = 0; i < pool.size; i++)
+			{
+				var obj = CreateNewObject(pool.tag, pool.prefab);
+				ArrangePool(obj);
+			}
+
+			// OnDisable에 ReturnToPool 구현여부와 중복구현 검사
+			if (poolDictionary[pool.tag].Count <= 0)
+				Debug.LogError($"{pool.tag}{INFO}");
+			else if (poolDictionary[pool.tag].Count != pool.size) 
+				Debug.LogError($"{pool.tag}에 ReturnToPool이 중복됩니다");
+		}
+	}
 
 	[Serializable]
 	public class Pool
@@ -134,25 +157,6 @@ public class ObjectPooler : MonoBehaviour
 
 	void Start()
 	{
-		spawnObjects = new List<GameObject>();
-		poolDictionary = new Dictionary<string, Queue<GameObject>>();
-
-		// 미리 생성
-		foreach (Pool pool in pools)
-		{
-			poolDictionary.Add(pool.tag, new Queue<GameObject>());
-			for (int i = 0; i < pool.size; i++)
-			{
-				var obj = CreateNewObject(pool.tag, pool.prefab);
-				ArrangePool(obj);
-			}
-
-			// OnDisable에 ReturnToPool 구현여부와 중복구현 검사
-			if (poolDictionary[pool.tag].Count <= 0)
-				Debug.LogError($"{pool.tag}{INFO}");
-			else if (poolDictionary[pool.tag].Count != pool.size) 
-				Debug.LogError($"{pool.tag}에 ReturnToPool이 중복됩니다");
-		}
 	}
 
 	GameObject CreateNewObject(string tag, GameObject prefab)

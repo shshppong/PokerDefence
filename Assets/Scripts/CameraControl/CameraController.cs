@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
         _camera = this.GetComponent<Camera>();
     }
     
-    void Update()
+    void FixedUpdate()
     {
         InputKeyCameraMove();
         // ChangeFOV();
