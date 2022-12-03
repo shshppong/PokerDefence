@@ -8,8 +8,7 @@ public class UnitController : MonoBehaviour
 	private	NavMeshAgent	navMeshAgent;
 	
 	[SerializeField]
-	private	LineRenderer	unitRadiusMarker;
-
+	private	GameObject		unitAttackRadius;
 	private void Awake()
 	{
 		navMeshAgent = GetComponent<NavMeshAgent>();
@@ -32,12 +31,12 @@ public class UnitController : MonoBehaviour
 
 	public void ShowRadius()
 	{
-		unitRadiusMarker.enabled = true;
+		unitAttackRadius.SetActive(true);
 	}
 
 	public void UnShowRadius()
 	{
-		unitRadiusMarker.enabled = false;
+		unitAttackRadius.SetActive(false);
 	}
 
 	public void Stop()

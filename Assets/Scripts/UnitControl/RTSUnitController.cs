@@ -114,24 +114,24 @@ public class RTSUnitController : MonoBehaviour
 	}
 	
 	/// <summary>
-	/// 선택에 상관없이 필드에 있는 유닛 전부 사거리 표시
+	/// 필드에 있는 선택된 유닛 사거리 표시
 	/// </summary>
 	public void AllUnitShowRadius()
 	{
-		for ( int i = 0; i < UnitList.Count; ++ i )
+		for ( int i = 0; i < selectedUnitList.Count; ++ i )
 		{
-			UnitList[i].ShowRadius();
+			selectedUnitList[i].ShowRadius();
 		}
 	}
 
 	/// <summary>
-	/// 선택에 상관없이 필드에 있는 유닛 전부 사거리 비 표시
+	/// 필드에 있는 선택된 유닛 사거리 비 표시
 	/// </summary>
 	public void AllUnitUnShowRadius()
 	{
-		for ( int i = 0; i < UnitList.Count; ++ i )
+		for ( int i = 0; i < selectedUnitList.Count; ++ i )
 		{
-			UnitList[i].UnShowRadius();
+			selectedUnitList[i].UnShowRadius();
 		}
 	}
 }

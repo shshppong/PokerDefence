@@ -30,7 +30,7 @@ public class KeyboardInput : MonoBehaviour
         }
     }
 
-    // C버튼을 누르고 있는 상태일 때 전체 유닛의 사정 거리를 보여줌.
+    // C버튼을 누르고 있는 상태일 때 선택된 유닛의 사정 거리를 보여줌.
     private void ShowUnitRadius()
     {
         if(Input.GetKeyDown(KeyCode.C))
