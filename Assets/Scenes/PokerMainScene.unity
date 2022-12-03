@@ -156,7 +156,7 @@ Transform:
   - {fileID: 1861616393}
   - {fileID: 673776963}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &228037538
 MonoBehaviour:
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 382920282}
   - component: {fileID: 382920283}
   m_Layer: 0
-  m_Name: EnemyManager
+  m_Name: WaveSpawnerSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -526,7 +526,7 @@ Transform:
   m_Children:
   - {fileID: 754579682}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &382920283
 MonoBehaviour:
@@ -542,8 +542,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8136487416641635199, guid: 751439da9c9a22343bca91e172721994, type: 3}
   spawnPoint: {fileID: 754579682}
+  waitForSecToNextWave: 10
   timeBetweenWaves: 5
-  waitForSecToSpawn: 1
+  SpawnWave_waitForSecToSpawn: 0.5
   _waveIndex: 50
 --- !u!1 &468181018
 GameObject:
@@ -621,7 +622,7 @@ GameObject:
   - component: {fileID: 519412492}
   - component: {fileID: 519412491}
   m_Layer: 0
-  m_Name: ObjectPooler
+  m_Name: ObjectPoolerSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,7 +656,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &626613107
 GameObject:
@@ -969,7 +970,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &964333963
 GameObject:
@@ -1064,7 +1065,7 @@ RectTransform:
   m_Children:
   - {fileID: 1608371162}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1200,7 +1201,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1466809664
 MonoBehaviour:

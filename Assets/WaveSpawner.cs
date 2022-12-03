@@ -11,10 +11,12 @@ namespace PokerDefence
 
         public Transform spawnPoint;
 
+        public float waitForSecToNextWave = 30f;
+
         public float timeBetweenWaves = 5f;
 
         [Range(0.0f, 1.0f)]
-        public float waitForSecToSpawn = 0.5f;
+        public float SpawnWave_waitForSecToSpawn = 0.5f;
 
         private float _countdown = 2f;
 
@@ -23,19 +25,22 @@ namespace PokerDefence
         
         void Update()
         {
+            
+
             if(_countdown <= 0f)
             {
                 StartCoroutine(SpawnWave());
                 _countdown = timeBetweenWaves;
+            }else
+            {
+                _countdown -= Time.deltaTime;
             }
 
-            _countdown -= Time.deltaTime;
         }
 
         IEnumerator SpawnWave()
         {
             yield return new WaitUntil(()=> ObjectPooler.GetAllPools("Enemy").Count >= _waveIndex);
-            // 괄호 안에 값이 참일 때 아래 구문 실행
 
             for(int i = 0; i < _waveIndex; i++)
             {
@@ -43,7 +48,16 @@ namespace PokerDefence
                 // ObjectPooler
                 ObjectPooler.SpawnFromPool<Enemy>("Enemy", spawnPoint.position, Quaternion.identity);
                 yield return new WaitForSeconds(0.5f);
+                print("SpawnWave Coroutine 실행 중..");
+                print(i+1);
             }
+        }
+
+        IEnumerator NextWaveCountdown(float time)
+        {
+            // 아직 안넣음
+            yield return new WaitForSeconds(time);
+            print("NextWaveCountdown Coroutine 실행 중..");
         }
     }
 }
