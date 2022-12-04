@@ -1,8 +1,7 @@
-using System.Linq;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PokerDefence
 {
@@ -21,16 +20,28 @@ namespace PokerDefence
         [Range(0.0f, 1.0f)]
         public float SpawnWave_waitForSpawn = 0.5f;
 
-        private float _countdown = 2f;
+        private float _countdown = 5f;
 
+        [SerializeField]
         [Range(1, 255)]
-        public int _waveIndex = 50;
+        private int _waveIndex = 50;
 
         private List<GameObject> checkActiveEnemyObjectPoolers = new List<GameObject>();
+
+        [Header("현재 라운드")]
+        public Text currentWaveText;                    // _countdown
+
+        [Header("다음 라운드까지 남은 시간")]
+        public Text nextWaveCountText;
+
+        [SerializeField]
+        private int _nextWaveCount;
         
         void Start()
         {
             checkActiveEnemyObjectPoolers.AddRange(ObjectPooler.GetAllPools("Enemy"));
+
+            _nextWaveCount = 0;
         }
 
         void Update()
@@ -39,8 +50,12 @@ namespace PokerDefence
             {
                 StartCoroutine(SpawnWave(SpawnWave_waitForSpawn));
                 _countdown = timeBetweenWaves;
+                _nextWaveCount++;
+                nextWaveCountText.text = _nextWaveCount.ToString();
             }
             _countdown -= Time.deltaTime;
+
+            //currentWaveText.text = Mathf.Floor(_countdown).ToString();
         }
 
         IEnumerator SpawnWave(float time)
