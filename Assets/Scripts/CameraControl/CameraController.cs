@@ -5,14 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private Transform posA;
-    [SerializeField]
-    private Transform posB;
-    [SerializeField]
-    AnimationCurve animCurve;
-
-    [SerializeField]
-    private float scrollSpeed = 5f;
+    private float scrollSpeed = 10f;
     [SerializeField]
     private float minY = 10f;
     [SerializeField]
@@ -26,8 +19,13 @@ public class CameraController : MonoBehaviour
     private float _lerpTime;
     private Camera _camera;
 
+	private	RTSUnitController rtsUnitController;
+    private Vector3 worldDefaultForward;
+
     void Start() {
         _camera = this.GetComponent<Camera>();
+
+        worldDefaultForward = transform.forward;
     }
     
     void FixedUpdate()
@@ -38,46 +36,66 @@ public class CameraController : MonoBehaviour
 
     void InputKeyCameraMove()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        float scroll = Input.GetAxis("Mouse ScrollWheel") * -scrollSpeed * 10f;
         
-        Vector3 pos = transform.position;
+        // Vector3 pos = transform.position;
 
-        pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
-        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        // pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
+        // pos.y = Mathf.Clamp(pos.y, minY, maxY);
         
-        Camera.main.transform.position = pos;
-    }
+        // Camera.main.transform.position = pos;
 
-    void ChangeFOV()
-    {
-        if(Mathf.Abs(_currentFov - fovEnd) > float.Epsilon)
+        if(_camera.fieldOfView <= 20f && scroll < 0)
         {
-            _lerpTime += Time.deltaTime;
-            float t = _lerpTime / transitionTime;
-
-            t = Mathf.SmoothStep(0, 1, t);
-            _currentFov = Mathf.Lerp(fovStart, fovEnd, t);
+            _camera.fieldOfView = 20f;
         }
-        else if(Mathf.Abs(_currentFov - fovEnd) < float.Epsilon)
+        else if(_camera.fieldOfView >= 60f && scroll > 0)
         {
-            _lerpTime = 0;
-            float tmp = fovStart;
-            fovStart = fovEnd;
-            fovEnd = tmp;
+            _camera.fieldOfView = 60f;
+        }
+        else
+        {
+            _camera.fieldOfView += scroll;
         }
 
-        _camera.fieldOfView = _currentFov;
+        if(rtsUnitController.ReturnGameObject() != null) // 오류
+        {
+            Transform cameraTarget = rtsUnitController.ReturnGameObject().transform;
+            if(cameraTarget && _camera.fieldOfView <= 30f)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(cameraTarget.position - transform.position), 0.15f);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(worldDefaultForward), 0.15f);
+            }
+        }
     }
+
+    // void ChangeFOV()
+    // {
+    //     if(Mathf.Abs(_currentFov - fovEnd) > float.Epsilon)
+    //     {
+    //         _lerpTime += Time.deltaTime;
+    //         float t = _lerpTime / transitionTime;
+
+    //         t = Mathf.SmoothStep(0, 1, t);
+    //         _currentFov = Mathf.Lerp(fovStart, fovEnd, t);
+    //     }
+    //     else if(Mathf.Abs(_currentFov - fovEnd) < float.Epsilon)
+    //     {
+    //         _lerpTime = 0;
+    //         float tmp = fovStart;
+    //         fovStart = fovEnd;
+    //         fovEnd = tmp;
+    //     }
+
+    //     _camera.fieldOfView = _currentFov;
+    // }
 
     // private float SmootherStep(float t)
     // {
     //     return t * t * t * (t * (6f * t - 15f) + 10f);
     // }
-    
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(posA.position, posB.position);
-    }
 
 }

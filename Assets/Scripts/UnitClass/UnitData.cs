@@ -1,5 +1,80 @@
+using System;
 using UnityEngine;
 
-public class UnitData
+namespace PokerDefence
 {
+    enum StatusType
+    {
+        None,
+        HP,
+    }
+
+    enum CardNum
+    {
+        SEVEN,              // 0
+        EIGHT,              // 1
+        NINE,               // 2
+        TEN,                // 3
+        KNIGHT,             // 4
+        QUEEN,              // 5
+        KING,               // 6
+        None,
+        ACE                 // 8
+    }
+
+    public enum PairType
+    {
+        QUEEN_TOP,
+        TOP,
+        ONE,
+        TWO,
+        TRIPLE,
+        FULL_HOUSE,
+        STRAIGHT,
+        FOUR_CARD,
+        BACK_STRAIGHT,
+        MOUNTAIN,
+        FLUSH,
+        FIVE_CARD,
+        BACK_STRAIGHT_FLUSH,
+        FIVE_FLUSH,
+        ROYAL_STRAIGHT_FLUSH
+    }
+
+    class UnitData
+    {
+        PairType type;
+        protected string name = null;
+        protected int hp = 0;
+
+        // 클래스 기본 선언
+        protected UnitData(PairType type)
+        {
+            this.type = type;
+        }
+
+        public void SetInfo(int hp)
+        {
+            this.hp = hp;
+        }
+
+        public void AddInfo(StatusType type, int value)
+        {
+            if(type.Equals(StatusType.HP))
+            {
+                hp += value;
+            }
+        }
+
+        public int GetInfo(StatusType type)
+        {
+            if(! type.Equals(StatusType.HP))
+            {
+                return 0;
+            }
+            int value = hp;
+            return value;
+        }
+    }
 }
+

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -133,6 +134,14 @@ public class RTSUnitController : MonoBehaviour
 		{
 			selectedUnitList[i].UnShowRadius();
 		}
+	}
+
+	/// <summary>
+	/// 선택된 유닛을 리턴 (최상위 단일)
+	/// </summary>
+	public GameObject ReturnGameObject()
+	{
+		return selectedUnitList[0].gameObject;
 	}
 }
 

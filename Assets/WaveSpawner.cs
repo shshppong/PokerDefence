@@ -28,10 +28,10 @@ namespace PokerDefence
 
         private List<GameObject> checkActiveEnemyObjectPoolers = new List<GameObject>();
 
-        [Header("현재 라운드")]
+        [Header("(UI) 현재 라운드")]
         public Text currentWaveText;                    // _countdown
 
-        [Header("다음 라운드까지 남은 시간")]
+        [Header("(UI) 다음 라운드까지 남은 시간")]
         public Text nextWaveCountText;
 
         [SerializeField]
@@ -55,7 +55,7 @@ namespace PokerDefence
             }
             _countdown -= Time.deltaTime;
 
-            //currentWaveText.text = Mathf.Floor(_countdown).ToString();
+            currentWaveText.text = Mathf.Floor(_countdown).ToString();
         }
 
         IEnumerator SpawnWave(float time)
