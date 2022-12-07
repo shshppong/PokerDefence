@@ -1,0 +1,55 @@
+Unit Spawned on Stage : 14
+
+Stage 1 	46 / 62 (16)
+Stage 2 	
+Stage 3 	252 / 380 (128)
+Stage 4 	395? / 572 (178)
+
+Boss 		3000 / 5155
+
+Stage 6 	582 / 831 (249)
+Stage 7 	
+Stage 8 	
+Stage 9 	1182 / 1688
+
+Boss 		? / ?
+
+Stage 11 	
+Stage 12 	
+Stage 13 	
+Stage 14 	2022 / 2888
+Stage 15 	
+Stage 16 	
+Stage 17 	
+Stage 18 	3601 / 5144
+
+50 - 71
+
+Unit Options
+	Ace 	+8
+	King 	+6
+	Queen 	+5
+	Knight 	+4
+	10 		+3
+	9 		+2
+	8 		+1
+	7 		+0
+
+Pair
+	Queen Top 			+ 20 +Queen
+
+	Top 				+  0 +a
+	One 				+ 10 +a
+	Two 				+ 20 +a
+	Triple 				+ 30 +a
+	Full House 			+ 46 +a
+	Straight 			+ 51 +a
+	Four Card 			+ 64 +a
+	BackStraight 		+ 51 +Queen
+	Mountain 			+ 76 +Queen
+	Flush 				+ 87
+	Five Card 			+120
+	BackStraightFlush 	+160 +Queen
+	Five Flush 			+170
+	RoyalStraightFlush 	+190
+	
