@@ -46,5 +46,10 @@ public class UnitController : MonoBehaviour
 		navMeshAgent.enabled.Equals(true); 		// 비활성화 후, 바로 활성화 하여 다음 동작 대기
 	}
 
+	public bool IsActiveDestination()
+    {
+		return navMeshAgent.velocity.sqrMagnitude > 0;
+    }
+
 }
 

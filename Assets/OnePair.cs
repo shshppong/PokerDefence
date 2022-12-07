@@ -22,15 +22,19 @@ namespace PokerDefence
         public GameObject bulletPrefab;
         public Transform firePoint;
 
+        public UnitController unitController;
+
         void Start()
         {
-            InvokeRepeating("UpdateTarget", 0f, 0.5f);
+            float timer = 1f / fireRate;
+            InvokeRepeating("UpdateTarget", 0f, timer);
         }
 
         void UpdateTarget()
         {
+            target = null;  // ≈∏±Í √ ±‚»≠
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-            float shortestDistance = Mathf.Infinity;
+            float shortestDistance = range;
             GameObject nearestEnemy = null;
             foreach(GameObject enemy in enemies)
             {
@@ -51,6 +55,7 @@ namespace PokerDefence
         void Update()
         {
             if(target == null) return;
+            if (unitController.IsActiveDestination()) return;
 
             Vector3 dir = target.position - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(dir);

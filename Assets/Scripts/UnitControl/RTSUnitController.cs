@@ -141,7 +141,11 @@ public class RTSUnitController : MonoBehaviour
 	/// </summary>
 	public GameObject ReturnGameObject()
 	{
-		return selectedUnitList[0].gameObject;
+		if (selectedUnitList.Count > 0)
+		{
+			return selectedUnitList[0].gameObject;
+		}
+		return null;
 	}
 }
 
