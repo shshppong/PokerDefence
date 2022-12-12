@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a05f7d9ae805843a379ddf421969d0, type: 3}
+  m_Name: Sutda
+  m_EditorClassIdentifier: 
+  cards:
+  - cardNumber: 1
+    description: "\uC77C\uAD11 \uD64D\uB2E8"
+    sprites:
+    - {fileID: -2171045692062622871, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+    - {fileID: 594655129906708553, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []
+  - cardNumber: 
+    description: 
+    sprites: []

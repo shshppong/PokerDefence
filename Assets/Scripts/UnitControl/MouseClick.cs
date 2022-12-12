@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseClick : MonoBehaviour
 {
@@ -35,13 +36,16 @@ public class MouseClick : MonoBehaviour
 			{
 				if ( hit.transform.GetComponent<UnitController>() == null ) return;
 
-				if ( Input.GetKey(KeyCode.LeftShift) )
+				if(EventSystem.current.IsPointerOverGameObject() == false)
 				{
-					rtsUnitController.ShiftClickSelectUnit(hit.transform.GetComponent<UnitController>());
-				}
-				else
-				{
-					rtsUnitController.ClickSelectUnit(hit.transform.GetComponent<UnitController>());
+					if ( Input.GetKey(KeyCode.LeftShift) )
+					{
+						rtsUnitController.ShiftClickSelectUnit(hit.transform.GetComponent<UnitController>());
+					}
+					else
+					{
+						rtsUnitController.ClickSelectUnit(hit.transform.GetComponent<UnitController>());
+					}
 				}
 			}
 			// 광선에 부딪히는 오브젝트가 없을 때

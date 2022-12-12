@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace PokerDefence
+namespace HwatuDefence
 {
     public class OnePair : MonoBehaviour
     {
@@ -21,18 +22,22 @@ namespace PokerDefence
 
         public GameObject bulletPrefab;
         public Transform firePoint;
+        public Image indicator;
 
         public UnitController unitController;
 
         void Start()
         {
+            // ì´ˆê¸° ì„¸íŒ…
+            indicator.transform.localScale = new Vector3(range, range, range);
+            
             float timer = 1f / fireRate;
             InvokeRepeating("UpdateTarget", 0f, timer);
         }
 
         void UpdateTarget()
         {
-            target = null;  // Å¸±ê ÃÊ±âÈ­
+            target = null;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
             float shortestDistance = range;
             GameObject nearestEnemy = null;
