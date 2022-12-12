@@ -18,12 +18,15 @@ namespace HwatuDefence
 
             [SerializeField]
             private string description;
+            public string Description { get { return description; } }
 
             [SerializeField]
             private List<Sprite> sprites = new List<Sprite>();
-
+            public List<Sprite> Sprites { get { return sprites; } }
         }
 
-        [SerializeField] Card[] cards;
+        [SerializeField]
+        private Card[] cards;
+        public Card[] Cards { get { return cards; } }
     }
 }
