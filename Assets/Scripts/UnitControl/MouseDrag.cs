@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseDrag: MonoBehaviour
 {
@@ -23,12 +24,12 @@ public class MouseDrag: MonoBehaviour
 
 	private void Update()
 	{
+		if(EventSystem.current.IsPointerOverGameObject()) return;
 		if ( Input.GetMouseButtonDown(0) )
 		{
 			start	 = Input.mousePosition;
 			dragRect = new Rect();
 		}
-		
 		if ( Input.GetMouseButton(0) )
 		{
 			end = Input.mousePosition;

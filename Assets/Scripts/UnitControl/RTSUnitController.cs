@@ -12,8 +12,17 @@ public class RTSUnitController : MonoBehaviour
 	private void Awake()
 	{
 		selectedUnitList = new List<UnitController>();
-		UnitList		 = unitSpawner.SpawnUnits();
+		// UnitList		 = unitSpawner.SpawnUnits();
+		UnitList = new List<UnitController>();
 	}
+
+	/// <summary>
+	/// 다른 스크립트에서 유닛 적재 허용
+	/// </summary>
+    internal void AddRangeUnitList(List<UnitController> unitControllers)
+    {
+		UnitList.AddRange(unitControllers);
+    }
 
 	/// <summary>
 	/// 마우스 클릭으로 유닛을 선택할 때 호출
