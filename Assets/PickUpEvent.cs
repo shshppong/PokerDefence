@@ -86,13 +86,12 @@ namespace HwatuDefence
                 StartCoroutine(ChangeTextToFullColor(0.5f, reRollCountText));
                 return;
             }
-            if(selectCardBool[0] || selectCardBool[1])
-                reRollBtn[0].interactable = false;
-            else
-                reRollBtn[0].interactable = true;
 
             if(!selectCardBool[value])
             {
+                // reRollBtn 버튼이 활성화 되었을 시에, 카드 선택이 되지 않도록 하기 (해제만 되게 하기)
+                if(reRollBtn[0].interactable) return;
+
                 // 카드를 선택 했을 때
                 selectCardBool[value] = true;
                 CardsUI[value].color = new Color32(255, 255, 255, 10);
@@ -103,25 +102,40 @@ namespace HwatuDefence
                 selectCardBool[value] = false;
                 CardsUI[value].color = new Color32(255, 255, 255, 255);
             }
+            
+            if(selectCardBool[0] || selectCardBool[1])
+            {
+                reRollBtn[0].interactable = true;
+            }
+            else
+            {
+                reRollBtn[0].interactable = false;
+            }
         }
 
         public IEnumerator ChangeTextToFullColor(float t, Text i)
         {
-            i.color = new Color(0, i.color.g, i.color.b, i.color.a);
+            i.color = new Color(i.color.r, 0, 0, i.color.a);
             while (i.color.r < 1.0f)
             {
                 // 요거 수정 R 만 했는데 GB 를 수정해야함
-                i.color = new Color(i.color.r + (Time.deltaTime / t), i.color.g, i.color.b, i.color.a);
+                i.color = new Color(i.color.r, 
+                                    i.color.g - (Time.deltaTime / t), 
+                                    i.color.b - (Time.deltaTime / t), 
+                                    i.color.a);
                 yield return null;
             }
         }
     
         public IEnumerator ChangeTextToZeroColor(float t, Text i)
         {
-            i.color = new Color(1, i.color.g, i.color.b, i.color.a);
+            i.color = new Color(i.color.r, 1, 1, i.color.a);
             while (i.color.r > 0.0f)
             {
-                i.color = new Color(i.color.r + (Time.deltaTime / t), i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+                i.color = new Color(i.color.r, 
+                                    i.color.g + (Time.deltaTime / t), 
+                                    i.color.b + (Time.deltaTime / t), 
+                                    i.color.a);
                 yield return null;
             }
         }
