@@ -35,12 +35,12 @@ public class KeyboardInput : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.C))
         {
-            rtsUnitController.AllUnitShowRadius();
+            rtsUnitController.AllUnitShowUI();
         }
 
         if(Input.GetKeyUp(KeyCode.C))
         {
-            rtsUnitController.AllUnitUnShowRadius();
+            rtsUnitController.AllUnitUnShowUI();
         }
     }
 }

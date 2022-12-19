@@ -36,6 +36,15 @@ namespace HwatuDefence
 
         [SerializeField]
         private int _nextWaveCount;
+
+        [Header("일반 웨이브 마다 체력 배수")]
+        [Range(1.1f, 5.0f)]
+        public float hpSquare = 1.2f;
+
+        
+        [Header("보스 웨이브 마다 체력 배수")]
+        [Range(2.0f, 5.0f)]
+        public float bossHpSquare = 2.0f;
         
         void Start()
         {
@@ -51,17 +60,17 @@ namespace HwatuDefence
                 StartCoroutine(SpawnWave(SpawnWave_waitForSpawn));
                 _countdown = timeBetweenWaves;
                 _nextWaveCount++;
-                nextWaveCountText.text = _nextWaveCount.ToString();
+                nextWaveCountText.text = "현재 웨이브: " + _nextWaveCount.ToString();
             }
             _countdown -= Time.deltaTime;
 
-            currentWaveText.text = Mathf.Floor(_countdown).ToString();
+            currentWaveText.text = "다음 웨이브까지 " + Mathf.Floor(_countdown) + "초 전".ToString();
         }
 
         IEnumerator SpawnWave(float time)
         {
             yield return new WaitUntil(()=> ObjectPooler.GetAllPools("Enemy").Count >= _waveIndex);
-            print("웨이브 당 한번만 실행되어야 합니다.");
+
             for(int i = 0; i < _waveIndex; i++)
             {
                 // GameObject obj = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);

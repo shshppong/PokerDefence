@@ -110,3 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   _wayPointIndex: 0
+  data: {fileID: 0}
+  deathEffect: {fileID: 3292261779982182974, guid: 9590aa46192317249b4c68a518501e5a,
+    type: 3}

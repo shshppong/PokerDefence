@@ -45,6 +45,7 @@ public class MouseClick : MonoBehaviour
 					else
 					{
 						rtsUnitController.ClickSelectUnit(hit.transform.GetComponent<UnitController>());
+						rtsUnitController.ShowSetUI(hit.transform.GetComponent<HwatuDefence.UnitProcess>());
 					}
 				}
 			}

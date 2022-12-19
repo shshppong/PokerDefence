@@ -1,106 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace HwatuDefence
 {
-    [CreateAssetMenu(fileName = "Unit", menuName = "Unit/Unit", order = int.MaxValue)]
+    // public enum UnitType
+    // {
+    //     None,
+    //     GWANG_TTAENG,       // 광땡
+    //     TTAENG,             // 땡
+    //     ALLI,               // 알리
+    //     DOKSA,              // 독사
+    //     GOO_BING,           // 구삥
+    //     JANG_BING,          // 장삥
+    //     JANG_SA,            // 장사
+    //     SEL_YUG,            // 세륙
+    //     GAB_O,              // 갑오
+    //     TTAENG_COUNTER,     // 떙잡이
+    //     GU_SA,              // 구사
+    //     FISH_GU_SA,         // 멍텅구리 구사
+    //     SECRET_ROYAL_PALACE,// 암행어사
+    //     KKEUS,              // 끗
+    //     MANG_TONG           // 망통
+    // }
+    
+    [CreateAssetMenu(fileName = "Unit", menuName = "Unit/Unit")]
 
     public class UnitData : ScriptableObject
     {
-        [SerializeField]
-        private string unitName;
-        public string UnitName { get { return unitName; } }
-        
-        /*
-        [SerializeField]
-        private int hp;
-        public int HP { get { return hp; } }
-        */
+        public string unitName;
+        public int attack;
+        public float attackSpeed;
+        public float attackRange;
+        public float moveSpeed;
 
-        [SerializeField]
-        private int damage;
-        public int Damage { get { return damage; } }
-
-        [SerializeField]
-        private float moveSpeed;
-        public float MoveSpeed { get { return moveSpeed; } }
+        public GameObject unitModel;
+        public GameObject bulletModel;
     }
 }
-
-/*
-namespace PokerDefence
-{
-    enum StatusType
-    {
-        None,
-        HP,
-    }
-
-    enum CardNum
-    {
-        SEVEN,              // 0
-        EIGHT,              // 1
-        NINE,               // 2
-        TEN,                // 3
-        KNIGHT,             // 4
-        QUEEN,              // 5
-        KING,               // 6
-        None,
-        ACE                 // 8
-    }
-
-    public enum PairType
-    {
-        QUEEN_TOP,
-        TOP,
-        ONE,
-        TWO,
-        TRIPLE,
-        FULL_HOUSE,
-        STRAIGHT,
-        FOUR_CARD,
-        BACK_STRAIGHT,
-        MOUNTAIN,
-        FLUSH,
-        FIVE_CARD,
-        BACK_STRAIGHT_FLUSH,
-        FIVE_FLUSH,
-        ROYAL_STRAIGHT_FLUSH
-    }
-
-    class UnitData
-    {
-        PairType type;
-        protected string name = null;
-        protected int hp = 0;
-
-        // 클래스 기본 선언
-        protected UnitData(PairType type)
-        {
-            this.type = type;
-        }
-
-        public void SetInfo(int hp)
-        {
-            this.hp = hp;
-        }
-
-        public void AddInfo(StatusType type, int value)
-        {
-            if(type.Equals(StatusType.HP))
-            {
-                hp += value;
-            }
-        }
-
-        public int GetInfo(StatusType type)
-        {
-            if(! type.Equals(StatusType.HP))
-            {
-                return 0;
-            }
-            int value = hp;
-            return value;
-        }
-    }
-}
-*/

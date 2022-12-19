@@ -12,7 +12,16 @@ namespace HwatuDefence
         
         public Sprite GetSprite(int index)
         {
-            Sprite image = cardData.Sprites[index];
+            Sprite image = cardData.data[0].sprites;
+
+            foreach(Data id in cardData.data)
+            {
+                if(id.ID == index)
+                {
+                    return id.sprites;
+                }
+            }
+
             return image;
         }
     }

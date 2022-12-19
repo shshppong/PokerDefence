@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RTSUnitController : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class RTSUnitController : MonoBehaviour
 	private	UnitSpawner			 unitSpawner;
 	private	List<UnitController> selectedUnitList;				// 플레이어가 클릭 or 드래그로 선택한 유닛
 	public	List<UnitController> UnitList { private set; get; }	// 맵에 존재하는 모든 유닛
+
+	public GameObject panel;
+	public Text[] UnitStatUIs;
 
 	private void Awake()
 	{
@@ -126,22 +130,22 @@ public class RTSUnitController : MonoBehaviour
 	/// <summary>
 	/// 필드에 있는 선택된 유닛 사거리 표시
 	/// </summary>
-	public void AllUnitShowRadius()
+	public void AllUnitShowUI()
 	{
 		for ( int i = 0; i < selectedUnitList.Count; ++ i )
 		{
-			selectedUnitList[i].ShowRadius();
+			selectedUnitList[i].ShowUI();
 		}
 	}
 
 	/// <summary>
 	/// 필드에 있는 선택된 유닛 사거리 비 표시
 	/// </summary>
-	public void AllUnitUnShowRadius()
+	public void AllUnitUnShowUI()
 	{
 		for ( int i = 0; i < selectedUnitList.Count; ++ i )
 		{
-			selectedUnitList[i].UnShowRadius();
+			selectedUnitList[i].UnShowUI();
 		}
 	}
 
@@ -155,6 +159,21 @@ public class RTSUnitController : MonoBehaviour
 			return selectedUnitList[0].gameObject;
 		}
 		return null;
+	}
+
+	/// <summary>
+	/// 선택된 유닛의 정보를 표시
+	/// </summary>
+	public void ShowSetUI(HwatuDefence.UnitProcess newUnit)
+	{
+		HwatuDefence.UnitData data = newUnit.data;
+		UnitStatUIs[0].text = data.unitName.ToString();
+		UnitStatUIs[1].text = data.attack.ToString();
+		UnitStatUIs[2].text = data.attackSpeed.ToString();
+		UnitStatUIs[3].text = data.attackRange.ToString();
+
+		panel.SetActive(true);
+		data = null;
 	}
 }
 

@@ -9,6 +9,10 @@ public class UnitController : MonoBehaviour
 	
 	[SerializeField]
 	private	GameObject		unitAttackRadius;
+
+	[SerializeField]
+	private GameObject 		unitNamePanel;
+
 	private void Awake()
 	{
 		navMeshAgent = GetComponent<NavMeshAgent>();
@@ -29,14 +33,16 @@ public class UnitController : MonoBehaviour
 		navMeshAgent.SetDestination(end);
 	}
 
-	public void ShowRadius()
+	public void ShowUI()
 	{
 		unitAttackRadius.SetActive(true);
+		unitNamePanel.SetActive(true);
 	}
 
-	public void UnShowRadius()
+	public void UnShowUI()
 	{
 		unitAttackRadius.SetActive(false);
+		unitNamePanel.SetActive(false);
 	}
 
 	public void Stop()

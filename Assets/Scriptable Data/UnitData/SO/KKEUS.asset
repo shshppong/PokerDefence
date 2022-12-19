@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d44c77e252dfa44b0c677a910e209f, type: 3}
+  m_Name: "\uB057"
+  m_EditorClassIdentifier: 
+  unitName: "\uB057"
+  attack: 1
+  attackSpeed: 1
+  attackRange: 3
+  moveSpeed: 2
+  unitModel: {fileID: 4729767305037854546, guid: d3b0de21a0360104eb316b64a3d1ab5d,
+    type: 3}
+  bulletModel: {fileID: 4351937485961882588, guid: a045021169757bd43b104457fe2f746f,
+    type: 3}

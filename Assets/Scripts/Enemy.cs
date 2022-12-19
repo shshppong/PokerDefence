@@ -14,6 +14,11 @@ namespace HwatuDefence
         [SerializeField]
         private int _wayPointIndex;
 
+        [SerializeField]
+        private UnitData data;
+        
+        public GameObject deathEffect;
+
         void OnDisable()
         {
             ObjectPooler.ReturnToPool(gameObject);    // 한 객체에 한번만 
@@ -45,6 +50,28 @@ namespace HwatuDefence
 
             _wayPointIndex++;
             _target = Waypoints.Points[_wayPointIndex];
+        }
+
+        public void TakeDamage(int amount)
+        {
+            // health -= amount;
+
+            // if(health <= 0f)
+            // {
+            //     Die();
+            // }
+            Die();
+        }
+        
+        void Die()
+        {
+            // Take Money
+            // PlayerStats.Money += worth;
+
+            GameObject effect = (GameObject) Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
+            
+            gameObject.SetActive(false);
         }
     }
 }

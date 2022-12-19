@@ -12,24 +12,153 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a05f7d9ae805843a379ddf421969d0, type: 3}
   m_Name: HwatuCard
   m_EditorClassIdentifier: 
-  sprites:
+  imageData:
+  - {fileID: 1192433268586290391, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: -2171045692062622871, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: 594655129906708553, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: -6525365243171897731, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: 1970501065501016941, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: 6788000240234559613, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: -1878150401155342022, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: -2149100393692155660, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: 8025226929495250232, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: 2315240776680768244, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: 3436944769065886028, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: 2651571498244417719, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: -8856994434248493818, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: 7184961624222718044, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: -6689881241521550032, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: 917279841374961813, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: -5942947968748065388, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: 690223263132892852, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
-  - {fileID: -5523070793734204362, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: 1463802202568326141, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 594655129906708553, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 1970501065501016941, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -1878150401155342022, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 8025226929495250232, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 3436944769065886028, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -8856994434248493818, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -6689881241521550032, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -5942947968748065388, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -5523070793734204362, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -7324620296505884897, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  data:
+  - elementName: "[0] \tNULL"
+    ID: 0
+    itemName: NULL
+    sprites: {fileID: 1192433268586290391, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[1] \t\uAD11"
+    ID: 1
+    itemName: "\uAD11"
+    sprites: {fileID: -2171045692062622871, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[2] \t\uD64D\uB2E8"
+    ID: 2
+    itemName: "\uD64D\uB2E8"
+    sprites: {fileID: -6525365243171897731, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[3] \t\uAD11"
+    ID: 3
+    itemName: "\uAD11"
+    sprites: {fileID: 6788000240234559613, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[4] \t\uACE0\uB3C4\uB9AC"
+    ID: 4
+    itemName: "\uACE0\uB3C4\uB9AC"
+    sprites: {fileID: -2149100393692155660, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[5] \t\uCD08\uB2E8"
+    ID: 5
+    itemName: "\uCD08\uB2E8"
+    sprites: {fileID: 2315240776680768244, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[6] \t\uCCAD\uB2E8"
+    ID: 6
+    itemName: "\uCCAD\uB2E8"
+    sprites: {fileID: 2651571498244417719, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[7] \t\uCD08\uB2E8"
+    ID: 7
+    itemName: "\uCD08\uB2E8"
+    sprites: {fileID: 7184961624222718044, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[8] \t\uAD11"
+    ID: 8
+    itemName: "\uAD11"
+    sprites: {fileID: 917279841374961813, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[9] \t\uC30D\uD53C"
+    ID: 9
+    itemName: "\uC30D\uD53C"
+    sprites: {fileID: 690223263132892852, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[10] \t\uCCAD\uB2E8"
+    ID: 10
+    itemName: "\uCCAD\uB2E8"
+    sprites: {fileID: 1463802202568326141, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[11] \t\uD64D\uB2E8"
+    ID: 11
+    itemName: "\uD64D\uB2E8"
+    sprites: {fileID: 594655129906708553, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[12] \t\uD64D\uB2E8"
+    ID: 12
+    itemName: "\uD64D\uB2E8"
+    sprites: {fileID: 1970501065501016941, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[13] \t\uD64D\uB2E8"
+    ID: 13
+    itemName: "\uD64D\uB2E8"
+    sprites: {fileID: -1878150401155342022, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[14] \t\uCD08\uB2E8"
+    ID: 14
+    itemName: "\uCD08\uB2E8"
+    sprites: {fileID: 8025226929495250232, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[15] \t\uCD08\uB2E8"
+    ID: 15
+    itemName: "\uCD08\uB2E8"
+    sprites: {fileID: 3436944769065886028, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[16] \t\uCCAD\uB2E8"
+    ID: 16
+    itemName: "\uCCAD\uB2E8"
+    sprites: {fileID: -8856994434248493818, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[17] \t\uCD08\uB2E8"
+    ID: 17
+    itemName: "\uCD08\uB2E8"
+    sprites: {fileID: -6689881241521550032, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[18] \t\uACE0\uB3C4\uB9AC"
+    ID: 18
+    itemName: "\uACE0\uB3C4\uB9AC"
+    sprites: {fileID: -5942947968748065388, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[19] \t\uCCAD\uB2E8"
+    ID: 19
+    itemName: "\uCCAD\uB2E8"
+    sprites: {fileID: -5523070793734204362, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  - elementName: "[20] \t\uCCAD\uB2E8"
+    ID: 20
+    itemName: "\uCCAD\uB2E8"
+    sprites: {fileID: -7324620296505884897, guid: 84f461df3d371c54d8d3244746ea2860,
+      type: 3}
+  sprites:
+  - {fileID: 1192433268586290391, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -2171045692062622871, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -6525365243171897731, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 6788000240234559613, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -2149100393692155660, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 2315240776680768244, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 2651571498244417719, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 7184961624222718044, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 917279841374961813, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 690223263132892852, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 1463802202568326141, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 594655129906708553, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 1970501065501016941, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -1878150401155342022, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 8025226929495250232, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: 3436944769065886028, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -8856994434248493818, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -6689881241521550032, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -5942947968748065388, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
+  - {fileID: -5523070793734204362, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
   - {fileID: -7324620296505884897, guid: 84f461df3d371c54d8d3244746ea2860, type: 3}
