@@ -379,14 +379,14 @@ namespace HwatuDefence
             }
 
             // 구삥     순서와 상관없이 1월 9월 조합
-            if((D == 1 && DD == 1) || (D == 9 && DD == 9)) // D가 1이고 DD가 9일때, 또는 D가 9이고 DD가 1일때
+            if((D == 1 || DD == 1) && (D == 9 || DD == 9)) // D가 1이고 DD가 9일때, 또는 D가 9이고 DD가 1일때
             {
                 cardHelperText.text = "구삥".ToString();
                 type = UnitType.KKERUS9;
                 return;
             }
             // 장삥
-            if((D == 1 && DD == 1) || (D == 10 && DD == 10))
+            if((D == 1 || DD == 1) && (D == 10 || DD == 10))
             {
                 cardHelperText.text = "장삥".ToString();
                 type = UnitType.KKERUS10;

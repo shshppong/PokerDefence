@@ -108,7 +108,7 @@ namespace HwatuDefence
             }
         }
 
-        // 스크립터블 오브젝트 데이터에서 가져오기
+        // 스크립터블 오브젝트 불러온 데이터에서 가져오기
         public void SetUnitAttackValues(int attack, int cardNum)
         {
             if(cardNum == 0)
@@ -128,6 +128,7 @@ namespace HwatuDefence
             unitNameText.text = this.unitName.ToString();
         }
 
+        // 스크립터블 오브젝트 원본 데이터 불러오기
         public void SetUnitSO(UnitData so)
         {
             data = so;
