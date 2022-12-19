@@ -61,6 +61,11 @@ namespace HwatuDefence
             if(target == null) return;
             if (unitController.IsActiveDestination()) return; // 이동 중이면 공격하지 않기
             
+            Vector3 dir = target.position - firePoint.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = lookRotation.eulerAngles;
+            firePoint.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
             // 발사 속도
             if(fireCountdown <= 0f)
             {
