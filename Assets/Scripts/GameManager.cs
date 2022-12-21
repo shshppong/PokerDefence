@@ -14,12 +14,20 @@ namespace HwatuDefence
         public int GameSpeed { get { return gameSpeed; } }
 
         public GameObject gameOverObj;
+        public GameObject gameClearObj;
 
         public void GameOver()
         {
             gameSpeed = 0;
             Debug.Log("게임 종료!");
             gameOverObj.SetActive(true);
+        }
+
+        public void Clear()
+        {
+            gameSpeed = 0;
+            Debug.Log("게임 종료!");
+            gameClearObj.SetActive(true);
         }
 
         public static GameManager Inst { get; private set; }

@@ -52,6 +52,12 @@ namespace HwatuDefence
             }
         }
 
+        public void SetHP(int num)
+        {
+            startHp = num;
+            hp = startHp;
+        }
+
         private void GetNextWayPoint()
         {
             if(_wayPointIndex >= Waypoints.Points.Length - 1)

@@ -53,8 +53,8 @@ namespace HwatuDefence
         [Range(2.0f, 5.0f)]
         public float bossHpSquare = 2.0f;
 
-        private int hpE = 1; // hp Enemy
-        private int hpB = 1; // hp Boss
+        private int hpE = 10; // hp Enemy
+        private int hpB = 100; // hp Boss
         
         void Start()
         {
@@ -62,7 +62,7 @@ namespace HwatuDefence
 
             _nextWaveCount = 0;
 
-            hpE = 5;
+            hpE = 10;
             hpB = 650;
             // (x * 5 * 1.5 * 100) - (x * 100 * 1.25)
             // (현재웨이브 * 시작체력 * 배수 * 보스체력추가배수) - (현재웨이브 * 체력보정 * 보정배수)
@@ -77,12 +77,28 @@ namespace HwatuDefence
                 _nextWaveCount++;
                 nextWaveCountText.text = _nextWaveCount + "\n" + "라운드".ToString();
 
+                hpE = (int)(_nextWaveCount * 10 * hpSquare);
+                print(hpE);
+                
+                foreach(Enemy e in ObjectPooler.GetAllPools<Enemy>("Enemy"))
+                {
+                    e.startHp = hpE;
+                }
+
                 // 만약 nextWaveCountText % 10 == 0 일 경우 보스몹을 소환시킨다.
                 // 각 보스는 10 스테이지마다 소환 보스 스테이지에서는 적 유닛이 나오지 않음
             }
             _countdown -= Time.deltaTime;
 
             currentWaveText.text = string.Format("{0:00.00}", _countdown) + "\t초".ToString();
+
+            int check = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            enemyCountText.text = "적 유닛\n" + check + "\t 기".ToString();
+
+            if(_nextWaveCount >= 100)
+            {  
+                GameManager.Inst.GameOver();
+            }
         }
 
         IEnumerator SpawnWave(float time)
@@ -97,7 +113,6 @@ namespace HwatuDefence
                 yield return new WaitForSeconds(time);
 
                 int checkCount = CheckActiveObjects();
-                enemyCountText.text = "적 유닛\n" + checkCount + "\t 기".ToString();
                 
                 if(checkCount >= 150)
                 {
