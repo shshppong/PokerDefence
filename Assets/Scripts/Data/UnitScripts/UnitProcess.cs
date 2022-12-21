@@ -14,13 +14,17 @@ namespace HwatuDefence
 
         [SerializeField]
         private string unitName = "";
+        public string UnitName { get { return unitName; } }
         [SerializeField]
         private int attack = 1;
+        public int Attack { get { return attack; } }
         [SerializeField]
         private float attackSpeed = 1f;
+        public float AttackSpeed { get { return attackSpeed; } }
         private float fireCountdown = 0f;
         [SerializeField]
         private float attackRange = 1f;
+        public float AttackRange { get { return attackRange; } }
         [SerializeField]
         private float moveSpeed = 1f;
         
@@ -101,6 +105,7 @@ namespace HwatuDefence
         {
             GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Bullet bullet = bulletGo.GetComponent<Bullet>();
+            bullet.damage = attack;
 
             if(bullet != null)
             {

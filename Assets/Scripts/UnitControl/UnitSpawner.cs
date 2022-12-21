@@ -37,10 +37,6 @@ public class UnitSpawner : MonoBehaviour
 
 	public HwatuDefence.UnitSO unitSO;
 
-	[Header("유닛 기본 공격력")]
-	[SerializeField]
-	private int unit_Default_Dmg = 10;
-
 	public List<UnitController> SpawnUnits()
 	{
 		List<UnitController> unitList = new List<UnitController>(maxUnitCount);
@@ -58,7 +54,7 @@ public class UnitSpawner : MonoBehaviour
 		return unitList;
 	}
 
-	public List<UnitController> SpawnUnits(UnitType type, int cardNum)
+	public List<UnitController> SpawnUnits(UnitType type, int cardNum, int damage)
 	{
 		List<UnitController> unitList = new List<UnitController>(1);
 
@@ -74,7 +70,7 @@ public class UnitSpawner : MonoBehaviour
 			}
 		}
 
-		clone.GetComponent<HwatuDefence.UnitProcess>().SetUnitAttackValues(unit_Default_Dmg, cardNum);
+		clone.GetComponent<HwatuDefence.UnitProcess>().SetUnitAttackValues(damage, cardNum);
 
 		UnitController	unit	= clone.GetComponent<UnitController>();
 

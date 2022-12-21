@@ -8,7 +8,7 @@ namespace HwatuDefence
 
         public float speed = 70f;
 
-        public int damage = 50;
+        public int damage = 1;
 
         public float explosionRadius = 0f;
         public GameObject impactEffect;

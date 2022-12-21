@@ -25,6 +25,8 @@ public class MouseClick : MonoBehaviour
 
 	private void GetInputMouseButtonWithNavMeshRaycast()
 	{
+		if(EventSystem.current.IsPointerOverGameObject() == true) return;
+
 		// 마우스 왼쪽 클릭으로 유닛 선택 or 해제
 		if ( Input.GetMouseButtonDown(0) )
 		{
@@ -35,18 +37,15 @@ public class MouseClick : MonoBehaviour
 			if ( Physics.Raycast(ray, out hit, Mathf.Infinity, layerUnit) )
 			{
 				if ( hit.transform.GetComponent<UnitController>() == null ) return;
-
-				if(EventSystem.current.IsPointerOverGameObject() == false)
+				
+				if ( Input.GetKey(KeyCode.LeftShift) )
 				{
-					if ( Input.GetKey(KeyCode.LeftShift) )
-					{
-						rtsUnitController.ShiftClickSelectUnit(hit.transform.GetComponent<UnitController>());
-					}
-					else
-					{
-						rtsUnitController.ClickSelectUnit(hit.transform.GetComponent<UnitController>());
-						rtsUnitController.ShowSetUI(hit.transform.GetComponent<HwatuDefence.UnitProcess>());
-					}
+					rtsUnitController.ShiftClickSelectUnit(hit.transform.GetComponent<UnitController>());
+				}
+				else
+				{
+					rtsUnitController.ClickSelectUnit(hit.transform.GetComponent<UnitController>());
+					rtsUnitController.ShowSetUI(hit.transform.GetComponent<HwatuDefence.UnitProcess>());
 				}
 			}
 			// 광선에 부딪히는 오브젝트가 없을 때

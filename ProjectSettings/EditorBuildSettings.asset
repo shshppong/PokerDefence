@@ -4,4 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/IntroMenu.unity
+    guid: 8e7727cbf1609344ba30df42734272e6
+  - enabled: 1
+    path: Assets/Scenes/PokerMainScene.unity
+    guid: 77ec7677b799ba84bb136e03a08f9725
+  m_configObjects: {}

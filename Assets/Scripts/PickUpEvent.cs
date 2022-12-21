@@ -42,9 +42,17 @@ namespace HwatuDefence
         private Text cardHelperText;
         [SerializeField]
         private Animation cardHelperAnim;
+        [SerializeField]
+        private Animation plusCountAnim;
 
         private UnitType type;
         private int cardNum;
+        private int damage;
+
+        [Header("유닛 가격")]
+        public CostUnitPrint unitCost;
+        public Text youHaventPointText;
+        public Text pointText;
 
         void Start()
         {
@@ -74,6 +82,23 @@ namespace HwatuDefence
 
             type = UnitType.None;
             cardNum = 0;
+            damage = 0;
+        }
+
+        // 돈 차감
+        public void ActivePickUp()
+        {
+            if(PlayerStats.Money < unitCost.cost)
+            {
+                youHaventPointText.gameObject.SetActive(true);
+                StartCoroutine(ChangeTextRedToWhiteColor(0.2f, youHaventPointText, 1));
+                return;
+            }
+
+            PlayerStats.Money -= unitCost.cost;
+            Debug.Log("가챠에 " + unitCost.cost + " 포인트 사용하였습니다.");
+            pointText.text = PlayerStats.Money.ToString();
+            PickUpMain();
         }
 
         // 호출되면 카드 뽑기
@@ -115,7 +140,7 @@ namespace HwatuDefence
             if(reRollCount < 1)
             {
                 // 남은 횟수 빨갛게 보여주다가 다시 돌아오기 (애니메이션)
-                StartCoroutine(ChangeTextRedToWhiteColor(0.5f, reRollCountText));
+                StartCoroutine(ChangeTextRedToWhiteColor(0.5f, reRollCountText, 0));
                 return;
             }
             ChangeSelectCardColor(value);
@@ -187,7 +212,7 @@ namespace HwatuDefence
             CheckSelectCardInteractable();
         }
 
-        public IEnumerator ChangeTextRedToWhiteColor(float t, Text i)
+        public IEnumerator ChangeTextRedToWhiteColor(float t, Text i, int available)
         {
             i.color = new Color(i.color.r, 0, 0, i.color.a);
             while (i.color.g < 1.0f)
@@ -199,6 +224,7 @@ namespace HwatuDefence
                                     i.color.a);
                 yield return null;
             }
+            if(available == 1) youHaventPointText.gameObject.SetActive(false);
         }
 
         // 선택
@@ -207,7 +233,8 @@ namespace HwatuDefence
             // rtsUnitController.AddRangeUnitList(unitSpawner.SpawnUnits(1));
             // 적용 될 때 카드 조합 데이터에서 공격력을 가져오고 
             // 소환 될 유닛에다가 해당 데이터를 집어넣어서 소환시킨다.
-            unitSpawner.SpawnUnits(type, cardNum);
+            // rtsUnitController.UnitList.AddRange(unitSpawner.SpawnUnits(type, cardNum, damage));
+            rtsUnitController.AddUnit(unitSpawner.SpawnUnits(type, cardNum, damage));
             type = UnitType.None;
             cardNum = 0;
             pickUpPanel.SetActive(false);
@@ -281,7 +308,6 @@ namespace HwatuDefence
             // 끗 (a+b) % 10 = x, x <= 8
             int z = add > 10 ? add%10 : add;
 
-
             // 처리
 
             // 특수 기능 족보
@@ -290,6 +316,7 @@ namespace HwatuDefence
             {
                 cardHelperText.text = "땡잡이".ToString();
                 type = UnitType.TTAENG_COUNTER;
+                damage = 0; //(D + DD) % 10
                 return;
             }
 
@@ -297,7 +324,11 @@ namespace HwatuDefence
             if((D == 4 || DD == 4) && (D == 9 || DD == 9))
             {
                 cardHelperText.text = "구사".ToString();
-                // 다시 뽑기
+                plusCountAnim.gameObject.SetActive(true);
+                reRollBtn[2].interactable = false;
+                plusCountAnim.Play();
+                reRollCount++;
+                Invoke("PlusCountInvoke", 1f);
                 return;
             }
 
@@ -305,6 +336,10 @@ namespace HwatuDefence
             if((OV[0] == 4 || OV[1] == 4) && (OV[0] == 9 || OV[1] == 9))
             {
                 cardHelperText.text = "멍텅구리 구사".ToString();
+                plusCountAnim.gameObject.SetActive(true);
+                plusCountAnim.Play();
+                reRollCount++;
+                Invoke("PlusCountInvoke", 1f);
                 // 다시 뽑기
                 return;
             }
@@ -314,6 +349,7 @@ namespace HwatuDefence
             {
                 cardHelperText.text = "암행어사".ToString();
                 type = UnitType.SECRET_ROYAL_PALACE;
+                damage = 1; // OV[0] + OV[1] % 10
                 return;
             }
 
@@ -328,14 +364,17 @@ namespace HwatuDefence
                         case 11:
                             cardHelperText.text = "삼팔광땡".ToString();
                             type = UnitType.GWANG_TTAENG38;
+                            damage = 11; // OV[0] + OV[1];
                             return;
                         case 9:
                             cardHelperText.text = "일팔광땡".ToString();
                             type = UnitType.GWANG_TTAENG18;
+                            damage = 9;
                             return;
                         case 4:
                             cardHelperText.text = "일삼광땡".ToString();
                             type = UnitType.GWANG_TTAENG13;
+                            damage = 4;
                             return;
                     }
                 }
@@ -348,17 +387,20 @@ namespace HwatuDefence
                 {
                     cardHelperText.text = "장땡".ToString();
                     type = UnitType.TTAENG;
+                    damage = 10;
                     return;
                 }
                 if(D == 1 && DD == 1)
                 {
                     cardHelperText.text = "삥땡".ToString();
                     type = UnitType.TTAENG;
+                    damage = 2;
                     return;
                 }
                 cardHelperText.text = D + "땡".ToString();
                 type = UnitType.TTAENG;
                 cardNum = D;
+                damage = D;
                 return;
             }
 
@@ -367,6 +409,7 @@ namespace HwatuDefence
             {
                 cardHelperText.text = "알리".ToString();
                 type = UnitType.AL_LI;
+                damage = 3;
                 return;
             }
 
@@ -375,6 +418,7 @@ namespace HwatuDefence
             {
                 cardHelperText.text = "독사".ToString();
                 type = UnitType.DOK_SA;
+                damage = 5;
                 return;
             }
 
@@ -383,6 +427,7 @@ namespace HwatuDefence
             {
                 cardHelperText.text = "구삥".ToString();
                 type = UnitType.KKERUS9;
+                damage = 0; // (D + DD) % 10
                 return;
             }
             // 장삥
@@ -390,6 +435,7 @@ namespace HwatuDefence
             {
                 cardHelperText.text = "장삥".ToString();
                 type = UnitType.KKERUS10;
+                damage = 1;
                 return;
             }
 
@@ -398,6 +444,7 @@ namespace HwatuDefence
             {
                 cardHelperText.text = "갑오".ToString();
                 type = UnitType.GAB_O;
+                damage = 9;
                 return;
             }
 
@@ -406,6 +453,7 @@ namespace HwatuDefence
             {
                 cardHelperText.text = "망통".ToString();
                 type = UnitType.MANG_TONG;
+                damage = 0;
                 return;
             }
 
@@ -415,16 +463,33 @@ namespace HwatuDefence
                 cardHelperText.text = z + "끗".ToString();
                 type = UnitType.KKEUS;
                 cardNum = z;
+                damage = z;
                 return;
             }
+        }
+
+        // 리롤 카운트 추가할 때 사용되는 일시정지 함수
+        public void PlusCountInvoke()
+        {
+            plusCountAnim.gameObject.SetActive(false);
+            reRollBtn[2].interactable = true;
+            GenerateCards();
+        }
+
+        // 유닛 제거 후 돈 일정량 지급
+        public void DeleteAndTakeMoney()
+        {
+            rtsUnitController.DestroyUnits();
         }
 
         // 치트
         private void Update()
         {
+            if(type == UnitType.GWANG_TTAENG38 || type == UnitType.GWANG_TTAENG18 || type == UnitType.GWANG_TTAENG13) return;
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                GenerateCards();
+                PlayerStats.Money += 20;
+                PickUpMain();
             }
         }
     }

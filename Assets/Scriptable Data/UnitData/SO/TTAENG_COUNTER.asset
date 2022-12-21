@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74d44c77e252dfa44b0c677a910e209f, type: 3}
-  m_Name: TTAENG_COUNTER
+  m_Name: "\uB561\uC7A1\uC774"
   m_EditorClassIdentifier: 
   unitName: "\uB561\uC7A1\uC774"
-  attack: 0
-  attackSpeed: 1
+  attack: 1
+  attackSpeed: 2
   attackRange: 3
   moveSpeed: 2
   unitModel: {fileID: 4729767305037854546, guid: d3b0de21a0360104eb316b64a3d1ab5d,

@@ -24,11 +24,14 @@ public class MouseDrag: MonoBehaviour
 
 	private void Update()
 	{
-		if(EventSystem.current.IsPointerOverGameObject()) return;
+		if(EventSystem.current.IsPointerOverGameObject() == true) return;
+
 		if ( Input.GetMouseButtonDown(0) )
 		{
 			start	 = Input.mousePosition;
 			dragRect = new Rect();
+			
+			rtsUnitController.UnShowSetUI();
 		}
 		if ( Input.GetMouseButton(0) )
 		{

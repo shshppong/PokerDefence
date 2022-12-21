@@ -44,18 +44,16 @@ public class CameraController : MonoBehaviour
         {
             _camera.fieldOfView += scroll;
         }
-
-        if(rtsUnitController.ReturnGameObject() != null)
+        if(rtsUnitController.ReturnGameObject() == null) return;
+        
+        Transform cameraTarget = rtsUnitController.ReturnGameObject().transform;
+        if(cameraTarget && _camera.fieldOfView <= 30f)
         {
-            Transform cameraTarget = rtsUnitController.ReturnGameObject().transform;
-            if(cameraTarget && _camera.fieldOfView <= 30f)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(cameraTarget.position - transform.position), 0.15f);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(worldDefaultForward), 0.15f);
-            }
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(cameraTarget.position - transform.position), 0.15f);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(worldDefaultForward), 0.15f);
         }
     }
 }

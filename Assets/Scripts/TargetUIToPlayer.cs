@@ -12,6 +12,8 @@ public class TargetUIToPlayer : MonoBehaviour
 
     void Update()
     {
+        if(cam.gameObject == null || cam.gameObject.activeSelf == false) return;
+        
         transform.LookAt(cam.transform);
     }
 }

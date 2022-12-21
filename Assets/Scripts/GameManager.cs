@@ -7,12 +7,37 @@ namespace HwatuDefence
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("게임 배속 조절")]
+        [SerializeField]
+        [Range(1, 4)]
+        private int gameSpeed = 1;            // Default : 1x (1배속)
+        public int GameSpeed { get { return gameSpeed; } }
+
+        public GameObject gameOverObj;
+
+        public void GameOver()
+        {
+            gameSpeed = 0;
+            Debug.Log("게임 종료!");
+            gameOverObj.SetActive(true);
+        }
+
         public static GameManager Inst { get; private set; }
-        void Awake() => Inst = this;
+        void Awake()
+        {
+            Inst = this;
+            Application.targetFrameRate = 60;
+            gameOverObj.SetActive(false);
+        }
 
         void Start()
         {
             StartCoroutine(DownloadSO());
+        }
+
+        void FixedUpdate()
+        {
+            Time.timeScale = gameSpeed;
         }
 
         #region 스크립터블 오브젝트

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,8 +6,11 @@ public class RTSUnitController : MonoBehaviour
 {
 	[SerializeField]
 	private	UnitSpawner			 unitSpawner;
+	
 	private	List<UnitController> selectedUnitList;				// 플레이어가 클릭 or 드래그로 선택한 유닛
-	public	List<UnitController> UnitList { private set; get; }	// 맵에 존재하는 모든 유닛
+
+	private List<UnitController> unitList;
+	public	List<UnitController> UnitList { private set { unitList = value; } get { return unitList; } }	// 맵에 존재하는 모든 유닛
 
 	public GameObject panel;
 	public Text[] UnitStatUIs;
@@ -20,13 +22,10 @@ public class RTSUnitController : MonoBehaviour
 		UnitList = new List<UnitController>();
 	}
 
-	/// <summary>
-	/// 다른 스크립트에서 유닛 적재 허용
-	/// </summary>
-    internal void AddRangeUnitList(List<UnitController> unitControllers)
-    {
-		UnitList.AddRange(unitControllers);
-    }
+	public void AddUnit(List<UnitController> unit)
+	{
+		UnitList.Add(unit[0]);
+	}
 
 	/// <summary>
 	/// 마우스 클릭으로 유닛을 선택할 때 호출
@@ -166,14 +165,37 @@ public class RTSUnitController : MonoBehaviour
 	/// </summary>
 	public void ShowSetUI(HwatuDefence.UnitProcess newUnit)
 	{
-		HwatuDefence.UnitData data = newUnit.data;
-		UnitStatUIs[0].text = data.unitName.ToString();
-		UnitStatUIs[1].text = data.attack.ToString();
-		UnitStatUIs[2].text = data.attackSpeed.ToString();
-		UnitStatUIs[3].text = data.attackRange.ToString();
+		UnitStatUIs[0].text = newUnit.UnitName.ToString();
+		UnitStatUIs[1].text = newUnit.Attack.ToString();
+		UnitStatUIs[2].text = newUnit.AttackSpeed.ToString();
+		UnitStatUIs[3].text = newUnit.AttackRange.ToString();
 
 		panel.SetActive(true);
-		data = null;
+	}
+
+	public void UnShowSetUI()
+	{
+		panel.SetActive(false);
+	}
+
+	/// <summary>
+	/// 선택된 유닛을 제거
+	/// </summary>
+	public void DestroyUnits()
+	{
+		if(selectedUnitList.Count <= 0) return;
+		
+		while(selectedUnitList.Count > 0)
+		{
+			for (int i = 0; i < selectedUnitList.Count; i++)
+			{
+				selectedUnitList[i].DestroyUnit();
+				unitList.Remove(selectedUnitList[i]);
+				selectedUnitList.RemoveAt(i);
+
+				HwatuDefence.PlayerStats.Money += 5;
+			}
+		}
 	}
 }
 

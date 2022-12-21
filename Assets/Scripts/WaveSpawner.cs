@@ -10,6 +10,9 @@ namespace HwatuDefence
         [Header("적 유닛 프리팹")]
         public GameObject enemyPrefab;
 
+        [Header("적 보스 프리팹")]
+        public GameObject bossPrefab;
+
         [Header("적 유닛 생성 위치")]
         public Transform spawnPoint;
 
@@ -33,9 +36,13 @@ namespace HwatuDefence
 
         [Header("(UI) 다음 라운드까지 남은 시간")]
         public Text nextWaveCountText;
+        public static int _nextWaveCount;
 
-        [SerializeField]
-        private int _nextWaveCount;
+        [Header("(UI) 필드에 있는 적 개수")]
+        public Text enemyCountText;
+
+        [Header("100마리 이상 경고 이미지")]
+        public GameObject warningImage;
 
         [Header("일반 웨이브 마다 체력 배수")]
         [Range(1.1f, 5.0f)]
@@ -45,12 +52,20 @@ namespace HwatuDefence
         [Header("보스 웨이브 마다 체력 배수")]
         [Range(2.0f, 5.0f)]
         public float bossHpSquare = 2.0f;
+
+        private int hpE = 1; // hp Enemy
+        private int hpB = 1; // hp Boss
         
         void Start()
         {
             checkActiveEnemyObjectPoolers.AddRange(ObjectPooler.GetAllPools("Enemy"));
 
             _nextWaveCount = 0;
+
+            hpE = 5;
+            hpB = 650;
+            // (x * 5 * 1.5 * 100) - (x * 100 * 1.25)
+            // (현재웨이브 * 시작체력 * 배수 * 보스체력추가배수) - (현재웨이브 * 체력보정 * 보정배수)
         }
 
         void Update()
@@ -60,11 +75,14 @@ namespace HwatuDefence
                 StartCoroutine(SpawnWave(SpawnWave_waitForSpawn));
                 _countdown = timeBetweenWaves;
                 _nextWaveCount++;
-                nextWaveCountText.text = "현재 웨이브: " + _nextWaveCount.ToString();
+                nextWaveCountText.text = _nextWaveCount + "\n" + "라운드".ToString();
+
+                // 만약 nextWaveCountText % 10 == 0 일 경우 보스몹을 소환시킨다.
+                // 각 보스는 10 스테이지마다 소환 보스 스테이지에서는 적 유닛이 나오지 않음
             }
             _countdown -= Time.deltaTime;
 
-            currentWaveText.text = "다음 웨이브까지 " + Mathf.Floor(_countdown) + "초 전".ToString();
+            currentWaveText.text = string.Format("{0:00.00}", _countdown) + "\t초".ToString();
         }
 
         IEnumerator SpawnWave(float time)
@@ -79,13 +97,20 @@ namespace HwatuDefence
                 yield return new WaitForSeconds(time);
 
                 int checkCount = CheckActiveObjects();
+                enemyCountText.text = "적 유닛\n" + checkCount + "\t 기".ToString();
+                
                 if(checkCount >= 150)
                 {
-                    print("GameOver");
+                    GameManager.Inst.GameOver();
                 }
                 else if(checkCount >= 100)
                 {
+                    warningImage.SetActive(true);
                     print("적 유닛이 100기 이상입니다.");
+                }
+                else if(warningImage.activeSelf == true)
+                {
+                    warningImage.SetActive(false);
                 }
             }
         }

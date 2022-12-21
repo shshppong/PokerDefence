@@ -57,5 +57,10 @@ public class UnitController : MonoBehaviour
 		return navMeshAgent.velocity.sqrMagnitude > 0;
     }
 
+	public void DestroyUnit()
+	{
+		Destroy(this.gameObject);
+	}
+
 }
 
