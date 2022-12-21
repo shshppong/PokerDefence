@@ -43,6 +43,26 @@ namespace HwatuDefence
             StartCoroutine(DownloadSO());
         }
 
+        void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.LeftParen))
+            {
+                gameSpeed--;
+            }
+            if(Input.GetKeyDown(KeyCode.RightParen))
+            {
+                gameSpeed++;
+            }
+            if(Input.GetKeyDown(KeyCode.N))
+            {
+                gameOverObj.SetActive(true);
+            }
+            if(Input.GetKeyDown(KeyCode.M))
+            {
+                gameClearObj.SetActive(true);
+            }
+        }
+
         void FixedUpdate()
         {
             Time.timeScale = gameSpeed;
